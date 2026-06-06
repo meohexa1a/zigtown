@@ -58,25 +58,29 @@ public final class GameManager {
         String title = "[accent]⚔ Zigtown SSC — Sector Survival Combat[]";
 
         String msg =
-            "[accent]═══ DEFENDERS (Đội Phòng Thủ) ═══[]\n" +
-            "[white]1. [accent]Building / Xây dựng:[]\n" +
-            "   [lightgray]EN:[white] Only Turrets, Walls, Menders & Force Projectors allowed.\n" +
-            "   [lightgray]VI:[white] Chỉ được xây Turrets, Walls, Menders và Force Projectors.\n" +
-            "[white]2. [accent]Zone / Phạm vi:[]\n" +
-            "   [lightgray]EN:[white] Build only inside the Active Sector (colored border).\n" +
-            "   [lightgray]VI:[white] Chỉ xây trong Phân khu Hoạt động (đường viền màu).\n" +
-            "[white]3. [accent]Supply:[]\n" +
-            "   [lightgray]EN:[white] Each block costs Supply (shown on HUD). Limit = no more building.\n" +
-            "   [lightgray]VI:[white] Mỗi block tốn Supply (HUD hiển thị). Hết giới hạn = không xây thêm.\n" +
-            "[white]4. [accent]Objective / Mục tiêu:[]\n" +
-            "   [lightgray]EN:[white] Capture Cores in the Active Sector to unlock the next one.\n" +
-            "   [lightgray]VI:[white] Chiếm Core ở Phân khu Hoạt động để mở khóa phân khu tiếp theo.\n" +
+            // --- English ---
+            "[accent]═══ ENGLISH ═══[]\n" +
+            "[white]Defenders:\n" +
+            "  1. [accent]Building:[] Only Turrets, Walls, Menders & Force Projectors.\n" +
+            "  2. [accent]Zone:[] Build only inside the Active Sector (colored border).\n" +
+            "  3. [accent]Supply:[] Each block costs Supply (shown on HUD). At the limit you cannot build.\n" +
+            "  4. [accent]Objective:[] Capture Cores in the Active Sector to unlock the next one.\n" +
+            "[white]Attackers:\n" +
+            "  - No building or destroying blocks.\n" +
+            "  - Units auto-spawn from the Attacker base and escalate over time.\n" +
             "\n" +
-            "[scarlet]═══ ATTACKERS (Đội Tấn Công) ═══[]\n" +
-            "   [lightgray]EN:[white] No building or destroying. Units auto-spawn and escalate over time.\n" +
-            "   [lightgray]VI:[white] Không xây hoặc phá block. Quân tự spawn và mạnh dần (Escalation).\n" +
+            // --- Vietnamese ---
+            "[accent]═══ TIẾNG VIỆT ═══[]\n" +
+            "[white]Defenders (Đội Phòng Thủ):\n" +
+            "  1. [accent]Xây dựng:[] Chỉ được xây Turrets, Walls, Menders và Force Projectors.\n" +
+            "  2. [accent]Phạm vi:[] Chỉ xây trong Phân khu Hoạt động (đường viền màu).\n" +
+            "  3. [accent]Supply:[] Mỗi block tốn Supply (hiển thị trên HUD). Hết giới hạn = không xây thêm.\n" +
+            "  4. [accent]Mục tiêu:[] Chiếm Core ở Phân khu Hoạt động để mở khóa phân khu tiếp theo.\n" +
+            "[white]Attackers (Đội Tấn Công):\n" +
+            "  - Không được xây hoặc phá block.\n" +
+            "  - Quân tự động spawn từ căn cứ và mạnh dần theo thời gian (Escalation).\n" +
             "\n" +
-            "[green]Good luck & have fun! — Chúc bạn chơi vui vẻ![]";
+            "[green]Good luck! — Chúc bạn chơi vui vẻ![]";
 
         var menu = MenuOption.builder()
             .title(title)
