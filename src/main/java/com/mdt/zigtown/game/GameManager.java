@@ -9,6 +9,7 @@ import lombok.extern.slf4j.*;
 
 import mindustry.*;
 import mindustry.game.EventType.*;
+import mindustry.game.Gamemode;
 import mindustry.gen.*;
 
 import com.mdt.zigtown.game.config.*;
@@ -35,6 +36,7 @@ public final class GameManager {
         Events.on(PlayEvent.class, e -> onPlay());
         Events.on(PlayerJoin.class, e -> {
             if (session == null) return;
+            assignTeam(e.player);
             showWelcomeMessage(e.player);
         });
 
@@ -52,6 +54,19 @@ public final class GameManager {
         });
 
         log.info("Zigtown GameManager - ready.");
+    }
+
+    private void assignTeam(Player player) {
+        var attackerTeam = session.getAttackerTeam();
+        var defenderTeam = session.getDefenderTeam();
+
+        long attackerCount = Groups.player.count(p -> p.team() == attackerTeam);
+        long defenderCount = Groups.player.count(p -> p.team() == defenderTeam);
+
+        var assigned = attackerCount <= defenderCount ? attackerTeam : defenderTeam;
+        player.team(assigned);
+        log.info("Assigned player {} to team {} (attackers={}, defenders={})",
+            player.name, assigned.name, attackerCount, defenderCount);
     }
 
     private void showWelcomeMessage(Player player) {
@@ -85,8 +100,10 @@ public final class GameManager {
         var menu = MenuOption.builder()
             .title(title)
             .message(msg)
+
             .button("OK — Đã hiểu!", p -> {})
             .row()
+
             .completeContent()
             .build();
 
@@ -104,13 +121,18 @@ public final class GameManager {
         }
 
         session = new ZigtownSession(config);
+        Vars.state.rules = Vars.state.map.applyRules(Gamemode.pvp);
         Vars.state.rules.buildCostMultiplier = 0f;
         Vars.state.rules.coreCapture = true;
-        Vars.state.rules.attackMode = true;
-        Vars.state.rules.pvp = true;
         Vars.state.rules.pvpAutoPause = false;
         Vars.state.rules.disableUnitCap = true;
         Vars.state.rules.infiniteResources = true;
+
+        // ensure both teams are recognized by the default PvP TeamAssigner
+        var attackerTeam = session.getAttackerTeam();
+        var defenderTeam = session.getDefenderTeam();
+        Vars.state.rules.teams.get(attackerTeam).protectCores = true;
+        Vars.state.rules.teams.get(defenderTeam).protectCores = true;
 
         log.info("Zigtown active! {} sectors loaded", config.sectors().size());
         Call.infoToast("Zigtown SSC Active! Sector: " + config.sectors().getFirst().name(), 10f);
