@@ -7,7 +7,9 @@ import mindustry.game.*;
 import mindustry.gen.*;
 import mindustry.type.*;
 import mindustry.world.blocks.storage.*;
+
 import arc.graphics.Color;
+
 import mindustry.entities.Effect;
 
 import com.mdt.zigtown.game.config.*;
@@ -24,9 +26,7 @@ public class ZigtownWorldHelper {
 
     public float countDefenderSupplyUsed(Team defenderTeam) {
         var now = System.currentTimeMillis();
-        if (now - lastDefenderSupplyTime < 1000L) {
-            return cachedDefenderSupply;
-        }
+        if (now - lastDefenderSupplyTime < 1000L) return cachedDefenderSupply;
 
         var supply = 0f;
         for (var build : Groups.build) {
@@ -34,6 +34,7 @@ public class ZigtownWorldHelper {
                 supply += ZigtownCosts.getBlockCost(build.block);
             }
         }
+
         cachedDefenderSupply = supply;
         lastDefenderSupplyTime = now;
         return supply;
@@ -41,9 +42,7 @@ public class ZigtownWorldHelper {
 
     public float countAttackerPointsUsed(Team attackerTeam) {
         var now = System.currentTimeMillis();
-        if (now - lastAttackerPointsTime < 1000L) {
-            return cachedAttackerPoints;
-        }
+        if (now - lastAttackerPointsTime < 1000L) return cachedAttackerPoints;
 
         var pointsUsed = 0f;
         for (var unit : Groups.unit) {
@@ -51,6 +50,7 @@ public class ZigtownWorldHelper {
                 pointsUsed += ZigtownCosts.getUnitCost(unit.type);
             }
         }
+
         cachedAttackerPoints = pointsUsed;
         lastAttackerPointsTime = now;
         return pointsUsed;
@@ -58,17 +58,11 @@ public class ZigtownWorldHelper {
 
     public void killIntrudersInSector(SectorConfig sector, Team teamToKill) {
         for (var unit : Groups.unit) {
-            if (unit.team == teamToKill && sector.contains(unit.tileX(), unit.tileY())) {
-                unit.kill();
-            }
+            if (unit.team == teamToKill && sector.contains(unit.tileX(), unit.tileY())) unit.kill();
         }
     }
 
     public boolean isSectorFullyCaptured(SectorConfig sector, Team defenderTeam) {
-        if (sector.cores().isEmpty()) {
-            throw new IllegalStateException("Sector " + sector.name() + " has no cores configured!");
-        }
-
         for (var c : sector.cores()) {
             var tile = Vars.world.tile((int) c.x, (int) c.y);
             if (tile != null && tile.build instanceof CoreBlock.CoreBuild cb && cb.team == defenderTeam)
@@ -127,6 +121,6 @@ public class ZigtownWorldHelper {
     private void playBorderEffect(int tx, int ty, Effect effect, Color color) {
         float wx = tx * Vars.tilesize + Vars.tilesize / 2f;
         float wy = ty * Vars.tilesize + Vars.tilesize / 2f;
-        Call.effect(effect, wx, wy, 3 * Vars.tilesize, color);
+        Call.effect(effect, wx, wy, 2 * Vars.tilesize, color);
     }
 }
