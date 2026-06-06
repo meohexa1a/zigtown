@@ -16,17 +16,19 @@ public class ZigtownCosts {
     private final Map<Block, Float> BLOCK_COSTS = Map.ofEntries(
         Map.entry(Blocks.duo, 2.0f),
         Map.entry(Blocks.scatter, 3.0f),
-        Map.entry(Blocks.arc, 4.0f),
-        Map.entry(Blocks.lancer, 5.0f),
-        Map.entry(Blocks.salvo, 6.0f),
-        Map.entry(Blocks.tsunami, 8.0f),
+        Map.entry(Blocks.scorch, 3.0f),
+        Map.entry(Blocks.hail, 4.0f),
         Map.entry(Blocks.wave, 8.0f),
-        Map.entry(Blocks.swarmer, 10.0f),
-        Map.entry(Blocks.cyclone, 12.0f),
-        Map.entry(Blocks.ripple, 12.0f),
-        Map.entry(Blocks.fuse, 12.0f),
-        Map.entry(Blocks.segment, 15.0f),
+        Map.entry(Blocks.lancer, 5.0f),
+        Map.entry(Blocks.arc, 4.0f),
         Map.entry(Blocks.parallax, 15.0f),
+        Map.entry(Blocks.swarmer, 10.0f),
+        Map.entry(Blocks.salvo, 6.0f),
+        Map.entry(Blocks.segment, 15.0f),
+        Map.entry(Blocks.tsunami, 8.0f),
+        Map.entry(Blocks.fuse, 12.0f),
+        Map.entry(Blocks.ripple, 12.0f),
+        Map.entry(Blocks.cyclone, 12.0f),
         Map.entry(Blocks.spectre, 25.0f),
         Map.entry(Blocks.meltdown, 25.0f),
         Map.entry(Blocks.foreshadow, 35.0f),
@@ -51,7 +53,11 @@ public class ZigtownCosts {
         Map.entry(Blocks.phaseWallLarge, 6.0f),
 
         Map.entry(Blocks.surgeWall, 3.0f),
-        Map.entry(Blocks.surgeWallLarge, 9.0f)
+        Map.entry(Blocks.surgeWallLarge, 9.0f),
+
+        Map.entry(Blocks.itemSource, 0.0f),
+        Map.entry(Blocks.liquidSource, 0.0f),
+        Map.entry(Blocks.powerSource, 0.0f)
     );
 
     public boolean isAllowed(Block block) {

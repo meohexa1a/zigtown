@@ -64,6 +64,7 @@ public final class GameManager {
         Vars.state.rules.pvp = true;
         Vars.state.rules.pvpAutoPause = false;
         Vars.state.rules.disableUnitCap = true;
+        Vars.state.rules.infiniteResources = true;
 
         log.info("Zigtown active! {} sectors loaded", config.sectors().size());
         Call.infoToast("Zigtown SSC Active! Sector: " + config.sectors().getFirst().name(), 10f);

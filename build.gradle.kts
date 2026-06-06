@@ -19,14 +19,18 @@ java {
 
 repositories {
     mavenCentral()
-    maven { url = uri("https://raw.githubusercontent.com/Anuken/MindustryMaven/master/repository") }
-    maven { url = uri("https://raw.githubusercontent.com/Zelaux/MindustryRepo/master/repository") }
     maven { url = uri("https://www.jitpack.io") }
+    ivy {
+        url = uri("https://github.com/")
+        patternLayout {
+            artifact("/[organisation]/[module]/releases/download/[revision]/[artifact].jar")
+        }
+        metadataSources { artifact() }
+    }
 }
 
 dependencies {
-    compileOnly("com.github.Anuken.Arc:arc-core:$mindustryVersion")
-    compileOnly("com.github.Anuken.Mindustry:core:$mindustryVersion")
+    compileOnly("Anuken:Mindustry:v158:dependencies")
     annotationProcessor("com.github.Anuken:jabel:$jabelVersion")
 
     compileOnly("org.projectlombok:lombok:1.18.42")
