@@ -32,7 +32,7 @@ public class ZigtownConfig {
     @Builder.Default
     private float initialMaxDefenderSupply = 150f;
     @Builder.Default
-    private int attackerGrowthPerEscalation = 15;
+    private int attackerGrowthPerEscalation = 25;
     @Builder.Default
     private int defenderGrowthPerEscalation = 30;
     @Builder.Default

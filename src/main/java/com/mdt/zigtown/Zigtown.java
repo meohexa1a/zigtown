@@ -34,6 +34,24 @@ public final class Zigtown extends Plugin {
     public void init() {
         log.info("Zigtown - initializing...");
 
+        // Set update = true on all walls so they are registered in Groups.build
+        for (var wall : new mindustry.world.Block[]{
+            mindustry.content.Blocks.copperWall,
+            mindustry.content.Blocks.copperWallLarge,
+            mindustry.content.Blocks.titaniumWall,
+            mindustry.content.Blocks.titaniumWallLarge,
+            mindustry.content.Blocks.thoriumWall,
+            mindustry.content.Blocks.thoriumWallLarge,
+            mindustry.content.Blocks.plastaniumWall,
+            mindustry.content.Blocks.plastaniumWallLarge,
+            mindustry.content.Blocks.phaseWall,
+            mindustry.content.Blocks.phaseWallLarge,
+            mindustry.content.Blocks.surgeWall,
+            mindustry.content.Blocks.surgeWallLarge
+        }) {
+            wall.update = true;
+        }
+
         var feather = Feather.with(new ZigtownModule(clientHandler, serverHandler));
         feather.instance(GameManager.class).init();
 
