@@ -34,7 +34,6 @@ public final class Zigtown extends Plugin {
     public void init() {
         log.info("Zigtown - initializing...");
 
-        // Set update = true on all walls so they are registered in Groups.build
         for (var wall : new mindustry.world.Block[]{
             mindustry.content.Blocks.copperWall,
             mindustry.content.Blocks.copperWallLarge,
