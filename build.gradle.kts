@@ -19,6 +19,7 @@ java {
 
 repositories {
     mavenCentral()
+    maven { url = uri("https://raw.githubusercontent.com/Anuken/MindustryMaven/master/repository") }
     maven { url = uri("https://raw.githubusercontent.com/Zelaux/MindustryRepo/master/repository") }
     maven { url = uri("https://www.jitpack.io") }
 }
