@@ -13,6 +13,8 @@ import mindustry.gen.*;
 
 import com.mdt.zigtown.game.config.*;
 import com.mdt.zigtown.game.manager.*;
+import com.mdt.mindustry.menu.MenuService;
+import com.mdt.mindustry.menu.MenuOption;
 
 @Slf4j
 @Singleton
@@ -21,6 +23,7 @@ public final class GameManager {
     private final CommonGameService commonGameService;
     private final ActionRestrictionService actionRestrictionService;
     private final ZigtownHudService zigtownHudService;
+    private final MenuService menuService;
 
     @Getter
     private ZigtownSession session = null;
@@ -52,18 +55,37 @@ public final class GameManager {
     }
 
     private void showWelcomeMessage(Player player) {
-        String msg = "[accent]Chào mừng bạn đến với Zigtown SSC (Sector Survival Combat)![]\n\n" +
-            "[lightgray]Luật chơi cho Defenders (Đội Phòng Thủ):[]\n" +
-            "1. [accent]Xây dựng:[] Chỉ được phép xây dựng Turrets, Walls, Menders, và Force Projectors.\n" +
-            "2. [accent]Phạm vi:[] Chỉ được xây dựng bên trong Phân khu Hoạt động (Active Sector) - có đường viền màu bao quanh.\n" +
-            "3. [accent]Supply:[] Mỗi block xây dựng tốn Supply (Giới hạn hiển thị trên HUD). Đạt giới hạn sẽ không thể xây thêm.\n" +
-            "4. [accent]Mục tiêu:[] Chiếm các Core ở Active Sector để mở khóa các phân khu tiếp theo.\n\n" +
-            "[lightgray]Luật chơi cho Attackers (Đội Tấn Công):[]\n" +
-            "- Không được phép xây dựng hoặc phá hủy block.\n" +
-            "- Quân lính tự động spawn từ Phân khu Kẻ tấn công và mạnh dần theo thời gian (Escalation).\n\n" +
-            "[green]Chúc bạn chơi game vui vẻ và giành chiến thắng![]";
+        String title = "[accent]⚔ Zigtown SSC — Sector Survival Combat[]";
 
-        Call.infoMessage(player.con, msg);
+        String msg =
+            "[accent]═══ DEFENDERS (Đội Phòng Thủ) ═══[]\n" +
+            "[white]1. [accent]Building / Xây dựng:[]\n" +
+            "   [lightgray]EN:[white] Only Turrets, Walls, Menders & Force Projectors allowed.\n" +
+            "   [lightgray]VI:[white] Chỉ được xây Turrets, Walls, Menders và Force Projectors.\n" +
+            "[white]2. [accent]Zone / Phạm vi:[]\n" +
+            "   [lightgray]EN:[white] Build only inside the Active Sector (colored border).\n" +
+            "   [lightgray]VI:[white] Chỉ xây trong Phân khu Hoạt động (đường viền màu).\n" +
+            "[white]3. [accent]Supply:[]\n" +
+            "   [lightgray]EN:[white] Each block costs Supply (shown on HUD). Limit = no more building.\n" +
+            "   [lightgray]VI:[white] Mỗi block tốn Supply (HUD hiển thị). Hết giới hạn = không xây thêm.\n" +
+            "[white]4. [accent]Objective / Mục tiêu:[]\n" +
+            "   [lightgray]EN:[white] Capture Cores in the Active Sector to unlock the next one.\n" +
+            "   [lightgray]VI:[white] Chiếm Core ở Phân khu Hoạt động để mở khóa phân khu tiếp theo.\n" +
+            "\n" +
+            "[scarlet]═══ ATTACKERS (Đội Tấn Công) ═══[]\n" +
+            "   [lightgray]EN:[white] No building or destroying. Units auto-spawn and escalate over time.\n" +
+            "   [lightgray]VI:[white] Không xây hoặc phá block. Quân tự spawn và mạnh dần (Escalation).\n" +
+            "\n" +
+            "[green]Good luck & have fun! — Chúc bạn chơi vui vẻ![]";
+
+        var menu = MenuOption.builder()
+            .title(title)
+            .message(msg)
+            .button("OK — Đã hiểu!", p -> {})
+            .completeContent()
+            .build();
+
+        menuService.showMenu(player, menu);
     }
 
     private void onPlay() {
