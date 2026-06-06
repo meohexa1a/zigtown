@@ -2,6 +2,10 @@ package com.mdt.zigtown;
 
 import lombok.extern.slf4j.Slf4j;
 
+import mindustry.Vars;
+
+import mindustry.net.Net;
+
 import org.codejargon.feather.Feather;
 
 import arc.util.CommandHandler;
@@ -33,6 +37,8 @@ public final class Zigtown extends Plugin {
     @Override
     public void init() {
         log.info("Zigtown - initializing...");
+
+        mindustry.net.Administration.Config.strict.set(false);
 
         for (var wall : new mindustry.world.Block[]{
             mindustry.content.Blocks.copperWall,
