@@ -33,6 +33,7 @@ public final class GameManager {
         log.info("Zigtown GameManager - initializing...");
 
         zigtownHudService.init();
+
         Events.on(PlayEvent.class, e -> onPlay());
         Events.on(PlayerJoin.class, e -> {
             if (session == null) return;
@@ -60,7 +61,6 @@ public final class GameManager {
         String title = "[accent]⚔ Zigtown SSC — Sector Survival Combat[]";
 
         String msg =
-            // --- English ---
             "[accent]═══ ENGLISH ═══[]\n" +
             "[white]Defenders:\n" +
             "  1. [accent]Building:[] Only Turrets, Walls, Menders & Force Projectors.\n" +
@@ -71,7 +71,7 @@ public final class GameManager {
             "  - No building or destroying blocks.\n" +
             "  - Units auto-spawn from the Attacker base and escalate over time.\n" +
             "\n" +
-            // --- Vietnamese ---
+
             "[accent]═══ TIẾNG VIỆT ═══[]\n" +
             "[white]Defenders (Đội Phòng Thủ):\n" +
             "  1. [accent]Xây dựng:[] Chỉ được xây Turrets, Walls, Menders và Force Projectors.\n" +

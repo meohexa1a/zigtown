@@ -64,15 +64,12 @@ public class ActionRestrictionService {
         var player = action.player;
         if (player == null) return true;
 
-        var attackerTeam = session.getAttackerTeam();
-        var defenderTeam = session.getDefenderTeam();
-
-        if (player.team() == attackerTeam) {
+        if (player.team() == session.getAttackerTeam()) {
             warningRateLimiter.sendWarning(player, "[red]Attackers are not allowed to build or destroy!");
             return false;
         }
 
-        if (player.team() != defenderTeam) return true;
+        if (player.team() != session.getDefenderTeam()) return true;
 
         if (!ZigtownCosts.isAllowed(action.block)) {
             warningRateLimiter.sendWarning(player, "[red]Only allowed: Turrets, Walls, Mender, Mend-Projector, Force-Projector!");

@@ -37,27 +37,22 @@ public class ZigtownCosts {
         Map.entry(Blocks.mendProjector, 10.0f),
         Map.entry(Blocks.forceProjector, 15.0f),
 
-        Map.entry(Blocks.copperWall, 0.5f),
-        Map.entry(Blocks.copperWallLarge, 1.5f),
-
-        Map.entry(Blocks.titaniumWall, 1.0f),
-        Map.entry(Blocks.titaniumWallLarge, 3.0f),
-
-        Map.entry(Blocks.thoriumWall, 1.5f),
-        Map.entry(Blocks.thoriumWallLarge, 4.5f),
-
-        Map.entry(Blocks.plastaniumWall, 1.5f),
-        Map.entry(Blocks.plastaniumWallLarge, 4.5f),
-
-        Map.entry(Blocks.phaseWall, 2.0f),
-        Map.entry(Blocks.phaseWallLarge, 6.0f),
-
-        Map.entry(Blocks.surgeWall, 3.0f),
-        Map.entry(Blocks.surgeWallLarge, 9.0f),
-
         Map.entry(Blocks.itemSource, 0.0f),
         Map.entry(Blocks.liquidSource, 0.0f),
-        Map.entry(Blocks.powerSource, 0.0f)
+        Map.entry(Blocks.powerSource, 0.0f),
+
+        Map.entry(Blocks.copperWall, 0.5f),
+        Map.entry(Blocks.copperWallLarge, 1.5f),
+        Map.entry(Blocks.titaniumWall, 1.0f),
+        Map.entry(Blocks.titaniumWallLarge, 3.0f),
+        Map.entry(Blocks.thoriumWall, 1.5f),
+        Map.entry(Blocks.thoriumWallLarge, 4.5f),
+        Map.entry(Blocks.plastaniumWall, 1.5f),
+        Map.entry(Blocks.plastaniumWallLarge, 4.5f),
+        Map.entry(Blocks.phaseWall, 2.0f),
+        Map.entry(Blocks.phaseWallLarge, 6.0f),
+        Map.entry(Blocks.surgeWall, 3.0f),
+        Map.entry(Blocks.surgeWallLarge, 9.0f)
     );
 
     public boolean isAllowed(Block block) {
@@ -67,6 +62,7 @@ public class ZigtownCosts {
     public float getBlockCost(Block block) {
         return block == null ? 0f : BLOCK_COSTS.getOrDefault(block, 0f);
     }
+
 
     private final Map<UnitType, Float> UNIT_COSTS = Map.ofEntries(
         Map.entry(UnitTypes.dagger, 1.0f),
