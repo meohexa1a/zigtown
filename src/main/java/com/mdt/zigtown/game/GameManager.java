@@ -86,6 +86,7 @@ public final class GameManager {
             .title(title)
             .message(msg)
             .button("OK — Đã hiểu!", p -> {})
+            .row()
             .completeContent()
             .build();
 
