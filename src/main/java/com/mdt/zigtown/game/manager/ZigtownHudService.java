@@ -48,11 +48,14 @@ public class ZigtownHudService {
 
         var content = PopupContent.builder()
             .zone(DisplayZone.MINIMAP_TOP_RIGHT)
+
             .append("[accent]" + mapName + "[]\n")
             .append("\n")
-            .append("[white]Active: [cyan]" + activeSector.name()
-                + "[] [lightgray]" + sectorIndex + "/" + totalSectors + "[]\n")
+
+            .append("[cyan]" + activeSector.name() + "[][]\n")
+            .append("[lightgray]" + sectorIndex + "/" + totalSectors + "[]\n")
             .append("[lightgray]Time elapsed: [yellow]" + timeStr + "[]")
+
             .completeContent()
             .build();
 
@@ -73,9 +76,11 @@ public class ZigtownHudService {
 
         var content = PopupContent.builder()
             .zone(DisplayZone.POPUP_TOP_LEFT)
+
             .append("[accent]⚡ Escalation [white]" + escalation + "[lightgray]/" + maxEscalation + "[]\n")
             .append("[scarlet]● Attacker  [white]" + atkUsed + "[lightgray]/" + atkMax + "[] pts\n")
             .append("[cyan]● Defender  [white]" + defUsed + "[lightgray]/" + defMax + "[] supply")
+
             .completeContent()
             .build();
 

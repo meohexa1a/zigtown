@@ -38,8 +38,6 @@ public final class Zigtown extends Plugin {
     public void init() {
         log.info("Zigtown - initializing...");
 
-        mindustry.net.Administration.Config.strict.set(false);
-
         for (var wall : new mindustry.world.Block[]{
             mindustry.content.Blocks.copperWall,
             mindustry.content.Blocks.copperWallLarge,
